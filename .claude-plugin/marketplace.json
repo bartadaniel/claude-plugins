@@ -1,0 +1,22 @@
+{
+  "name": "bartadaniel-plugins",
+  "owner": {
+    "name": "Daniel Barta",
+    "email": "barta.daniel@gmail.com"
+  },
+  "metadata": {
+    "description": "Claude Code plugins by Daniel Barta",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "git-poster",
+      "source": "./plugins/git-poster",
+      "description": "Generate creative poster-style visualizations of git contributions",
+      "version": "1.0.0",
+      "author": {
+        "name": "Daniel Barta"
+      }
+    }
+  ]
+}
