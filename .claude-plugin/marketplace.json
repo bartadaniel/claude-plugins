@@ -17,6 +17,24 @@
       "author": {
         "name": "Daniel Barta"
       }
+    },
+    {
+      "name": "billingo",
+      "source": "./plugins/billingo",
+      "description": "Manage invoices, partners, products, and expenses via the Billingo Hungarian invoicing API",
+      "version": "1.0.0",
+      "author": {
+        "name": "Daniel Barta"
+      }
+    },
+    {
+      "name": "apple-notes",
+      "source": "./plugins/apple-notes",
+      "description": "Access and manage Apple Notes — list, create, read, update, delete, search, tag, batch operations, export, and organize",
+      "version": "1.0.0",
+      "author": {
+        "name": "Daniel Barta"
+      }
     }
   ]
 }
