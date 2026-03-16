@@ -61,14 +61,14 @@ If you already have Nano Banana MCP set up, the plugin works immediately — no 
 
 ## Example Output
 
-### NASA Mission Poster
-![NASA style poster](examples/nasa.png)
-
 ### 1950s B-Movie Poster
 ![B-movie style poster](examples/bmovie.png)
 
-### Ukiyo-e Woodblock Print
-![Ukiyo-e style poster](examples/ukiyoe.png)
+### Vintage Circus Poster
+![Circus style poster](examples/circus.png)
+
+### Lucha Libre Wrestling Poster
+![Lucha libre style poster](examples/lucha.png)
 
 ## How It Works
 
