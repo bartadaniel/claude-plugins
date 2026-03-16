@@ -90,16 +90,14 @@ git log --author="AUTHOR" --since="DAYS days ago" --format="%ad" --date=format:"
 
 # Work breakdown
 git log --author="AUTHOR" --since="DAYS days ago" --pretty=format:"%H" | xargs -I{} git diff-tree --no-commit-id --numstat {} 2>/dev/null | awk '{print $3}' | grep -oE '\.[^./]+$' | sort | uniq -c | sort -rn | head -10   # file types
-git log --author="AUTHOR" --since="DAYS days ago" --pretty=format:"%s" | grep -oE '(Fix|Add|Remove|Update|Refactor|Implement|Enable|Disable|Move|Revert|Release|Merge|Upgrade|Migrate|Clean|Improve|Rename|Replace|Introduce|Simplify|Optimize)' | sort | uniq -c | sort -rn   # action verbs
-git log --author="AUTHOR" --since="DAYS days ago" --pretty=format:"%s" | grep -oE '^[A-Z]+-[0-9]+' | sed 's/-[0-9]*//' | sort | uniq -c | sort -rn   # project areas
 git log --author="AUTHOR" --since="DAYS days ago" --pretty=format:"%H" | xargs -I{} git diff-tree --no-commit-id --numstat {} 2>/dev/null | awk '{print $3}' | sed 's|/[^/]*$||' | sort | uniq -c | sort -rn | head -15   # top directories
 
-# Extras
-echo "PRs: $(git log --author='AUTHOR' --since='DAYS days ago' --pretty=format:'%s' | grep -c '(#[0-9]*)')"
-echo "Tickets: $(git log --author='AUTHOR' --since='DAYS days ago' --pretty=format:'%s' | grep -oE '^[A-Z]+-[0-9]+' | sort -u | wc -l)"
-echo "Hotfixes: $(git log --author='AUTHOR' --since='DAYS days ago' --pretty=format:'%s' | grep -ci hotfix)"
-echo "Weekend: $(git log --author='AUTHOR' --since='DAYS days ago' --format='%ad' --date=format:'%u' | awk '$1>=6' | wc -l)"
-echo "Late_night: $(git log --author='AUTHOR' --since='DAYS days ago' --format='%ad' --date=format:'%H' | awk '$1>=21 || $1<7' | wc -l)"
+# Commit message analysis — get raw messages for the agent to analyze
+git log --author="AUTHOR" --since="DAYS days ago" --pretty=format:"%s" | head -200   # recent commit messages
+
+# Weekend and late-night commits
+git log --author="AUTHOR" --since="DAYS days ago" --format='%ad' --date=format:'%u' | awk '$1>=6' | wc -l   # weekend commits
+git log --author="AUTHOR" --since="DAYS days ago" --format='%ad' --date=format:'%H' | awk '$1>=21 || $1<7' | wc -l   # late night commits
 
 # Team context
 git shortlog -sn --all --since="DAYS days ago" | head -10   # leaderboard for rank
@@ -112,10 +110,10 @@ Synthesize all collected stats into a structured profile summary. Include:
 - **Core**: total commits, active days, longest streak, lines added/deleted/net
 - **Rank**: position on team leaderboard (note if #1 is a bot)
 - **Rhythm**: dominant day of week, peak hours, busiest single day, hottest month
-- **Character**: ratio of fixes vs features vs removals vs other actions
-- **Domains**: top project areas (from ticket prefixes and directories)
+- **Character**: analyze the raw commit messages to categorize the developer's work (e.g., fixes, features, refactoring, cleanup, etc.). Adapt to whatever commit style the repo uses — conventional commits, freeform, ticket-prefixed, etc.
+- **Domains**: identify project areas from commit messages and top directories. Look for ticket prefixes, component names, or recurring themes — whatever patterns exist in this specific repo.
 - **Tech stack**: file type breakdown
-- **Achievements**: PRs merged, tickets resolved, hotfixes, weekend/late-night commits
+- **Achievements**: look for PRs (e.g., `(#123)`), ticket references, hotfix-related commits, weekend/late-night commits. Adapt the detection to the repo's actual conventions.
 - **Biggest moment**: hottest month's commit count, busiest single day
 
 Print this profile summary to the user before generating images.
