@@ -7,6 +7,7 @@ A marketplace of Claude Code plugins by Daniel Barta.
 | Plugin | Description |
 |--------|-------------|
 | [git-poster](plugins/git-poster) | Generate creative poster-style visualizations of your git contributions across 17 artistic styles |
+| [apple-notes](plugins/apple-notes) | Access and manage Apple Notes — list, create, read, update, delete, search, tag, batch operations, and export |
 
 ## Installation
 
