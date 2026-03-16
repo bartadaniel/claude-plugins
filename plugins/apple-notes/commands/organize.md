@@ -1,5 +1,5 @@
 ---
-description: Analyze and organize your Apple Notes — suggests folder structure, tags, and cleanup actions
+description: Analyze and organize your Apple Notes — suggests folder structure, title renames, tags, and cleanup actions
 argument-hint: "[folder_name]"
 ---
 # Organize Apple Notes
@@ -38,6 +38,7 @@ Look at every note's title and content. Identify:
 - **Duplicate or very similar notes** — candidates for merging
 - **Stale notes** — very old notes that may no longer be relevant (check modification dates)
 - **Notes in wrong folders** — notes whose content clearly belongs in a different folder
+- **Poor titles** — notes whose name is vague ("New Note"), auto-generated from the first line of content (a URL, code snippet, or chat message), or otherwise unhelpful. Suggest a clear, descriptive title based on the note's actual content.
 
 ### Step 3: Present the Plan
 
@@ -62,6 +63,13 @@ Propose a consistent tagging scheme:
 - Tags to rename for consistency (e.g., `#todo` and `#TODO` → `#todo`)
 - Tags to remove if redundant with folder placement
 
+#### Suggested Title Renames
+Many notes end up with bad titles — "New Note", a pasted URL, a code snippet, or the first line of a chat message. Propose better titles based on what the note actually contains. Format as:
+- Current: "New Note" → Suggested: "Barcelona Restaurant Recommendations"
+- Current: "https://youtube.com/shorts/..." → Suggested: "Funny Cat Video (YouTube)"
+
+Since note names are derived from the first line of the body, renaming means updating the body so the first line becomes the new title. This is a body modification — the attachment guard applies. Present renames as a numbered list for individual approval.
+
 #### Cleanup Suggestions
 - Empty/near-empty notes to delete
 - Potential duplicates to review and merge
@@ -83,9 +91,10 @@ Only execute what was explicitly approved. Process in this order to avoid confli
 
 1. **Create new folders** — `add_folder.sh`
 2. **Move notes to folders** — use `batch_move.sh` where possible, otherwise update individually
-3. **Add/rename/remove tags** — `add_tags.sh`, `rename_tag.sh`, `remove_tags.sh`. These scripts will refuse to modify notes that have attachments (images, files, drawings) since modifying the body destroys them. If a note is blocked, inform the user and ask if they want to force it with `--force`.
-4. **Delete empty/duplicate notes** — `delete_note.sh` (confirm each deletion individually)
-5. **Remove empty folders** — `remove_folder.sh`
+3. **Rename note titles** — `update_note.sh` to rewrite the body with a new first line. Read the current body first, replace only the first line, keep everything else intact.
+4. **Add/rename/remove tags** — `add_tags.sh`, `rename_tag.sh`, `remove_tags.sh`. These scripts will refuse to modify notes that have attachments (images, files, drawings) since modifying the body destroys them. If a note is blocked, inform the user and ask if they want to force it with `--force`.
+5. **Delete empty/duplicate notes** — `delete_note.sh` (confirm each deletion individually)
+6. **Remove empty folders** — `remove_folder.sh`
 
 After each group of changes, report what was done.
 
