@@ -1,13 +1,13 @@
-# bartadaniel-plugins
+# @bartadaniel/claude-code-plugins
 
-A marketplace of Claude Code plugins by Daniel Barta.
+A continuously evolving personal Claude Code infrastructure.
 
 ## Plugins
 
-| Plugin | Description |
-|--------|-------------|
+| Plugin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
+|------|-------------|
 | [git-poster](plugins/git-poster) | Generate creative poster-style visualizations of your git contributions across 17 artistic styles |
-| [apple-notes](plugins/apple-notes) | Access and manage Apple Notes — list, create, read, update, delete, search, tag, batch operations, and export |
+| [apple-notes](plugins/apple-notes) | Access and manage Apple Notes — list, create, read, update, delete, search, tag, batch operations, export, and organize with AI-suggested folder structure and tagging |
 
 ## Installation
 
