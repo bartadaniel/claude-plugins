@@ -1,0 +1,45 @@
+{
+  "name": "@daniel.barta/billingo-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for the Billingo V3 Hungarian invoicing API",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "billingo-mcp": "./bin/billingo-mcp.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "BILLINGO_MOCK=true node --loader ts-node/esm src/index.ts"
+  },
+  "dependencies": {
+    "@codingsans/billingo-client": "^2.1.0",
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "axios": "^1.13.6",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "keywords": [
+    "billingo",
+    "mcp",
+    "invoicing",
+    "hungary"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Daniel Barta",
+    "email": "barta.daniel@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bartadaniel/claude-plugins",
+    "directory": "plugins/billingo/mcp-server"
+  }
+}

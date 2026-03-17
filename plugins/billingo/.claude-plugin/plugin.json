@@ -1,0 +1,23 @@
+{
+  "name": "billingo",
+  "description": "Manage invoices, partners, products, and expenses via the Billingo Hungarian invoicing API",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Barta",
+    "email": "barta.daniel@gmail.com"
+  },
+  "homepage": "https://github.com/bartadaniel/claude-plugins/tree/main/plugins/billingo",
+  "repository": "https://github.com/bartadaniel/claude-plugins",
+  "license": "MIT",
+  "keywords": ["billingo", "invoicing", "hungary", "szamla", "api", "documents", "partners", "products"],
+  "lspServers": {
+    "typescript": {
+      "command": "typescript-language-server",
+      "args": ["--stdio", "--tsserver-path", "./mcp-server/node_modules/typescript/lib"],
+      "extensionToLanguage": {
+        ".ts": "typescript",
+        ".tsx": "typescriptreact"
+      }
+    }
+  }
+}

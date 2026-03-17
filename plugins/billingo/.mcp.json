@@ -1,0 +1,9 @@
+{
+  "billingo": {
+    "command": "npx",
+    "args": ["-y", "@daniel.barta/billingo-mcp"],
+    "env": {
+      "BILLINGO_API_KEY": "${BILLINGO_API_KEY}"
+    }
+  }
+}
