@@ -35,6 +35,15 @@
       "author": {
         "name": "Daniel Barta"
       }
+    },
+    {
+      "name": "dev-conventions",
+      "source": "./plugins/dev-conventions",
+      "description": "General development conventions automatically injected into every session",
+      "version": "1.0.0",
+      "author": {
+        "name": "Daniel Barta"
+      }
     }
   ]
 }

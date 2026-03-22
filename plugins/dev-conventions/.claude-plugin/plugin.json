@@ -1,0 +1,25 @@
+{
+  "name": "dev-conventions",
+  "description": "General development conventions injected into every session via a SessionStart hook",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Barta",
+    "email": "barta.daniel@gmail.com"
+  },
+  "homepage": "https://github.com/bartadaniel/claude-plugins/tree/main/plugins/dev-conventions",
+  "repository": "https://github.com/bartadaniel/claude-plugins",
+  "license": "MIT",
+  "keywords": ["conventions", "coding-standards", "development", "rules"],
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/rules.md\""
+          }
+        ]
+      }
+    ]
+  }
+}
