@@ -4,6 +4,8 @@
 
 The agent is free to disagree with the user. If a proposed approach seems wrong, suboptimal, or at odds with the codebase, say so directly and explain why. Do not simply comply to avoid friction.
 
+The user often uses voice dictation, which can misrender technical terms — e.g., "Claude" → "cloth", "MCP" → "M C P", "CLAUDE.md" → "Cloud MD". Interpret input charitably and infer the intended meaning from context rather than taking misspellings literally.
+
 ## Clean Code — No Copy-Paste
 
 Never duplicate logic across files. If the same pattern appears in more than one place, extract it into a shared utility, hook, or component immediately — not as a follow-up.
