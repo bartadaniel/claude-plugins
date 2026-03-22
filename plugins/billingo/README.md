@@ -5,10 +5,18 @@ Manage invoices, partners, products, and expenses via the [Billingo](https://www
 ## Setup
 
 1. Get your API key from [Billingo API settings](https://app.billingo.hu/api-key)
-2. Set the environment variable:
+2. Set the environment variable — either in your shell profile:
    ```bash
    export BILLINGO_API_KEY=your-api-key-here
    ```
+   Or via Claude Code settings (keeps it scoped to Claude Code only):
+   ```bash
+   /config set env.BILLINGO_API_KEY your-api-key-here
+   ```
+
+### Optional: Chrome DevTools MCP
+
+The spending entry workflow can automatically attach PDF invoices to Billingo spending records via Chrome DevTools. This requires a Chrome DevTools MCP server to be configured separately. Without it, spending entries are created normally but PDF attachments must be uploaded manually through the Billingo web UI.
 
 ## Features
 
@@ -17,6 +25,9 @@ Manage invoices, partners, products, and expenses via the [Billingo](https://www
 - **Guided workflows** via slash commands:
   - `/billingo:invoice` — step-by-step invoice creation
   - `/billingo:report` — revenue and spending summary
+- **Skills:**
+  - `billingo` — general Billingo tool usage (triggered by invoicing/billing keywords)
+  - `billingo-invoice` — upload incoming invoices (things you paid for) as spending/expense entries from PDF, with duplicate checking, partner management, exchange rates, and optional PDF attachment via Chrome DevTools
 
 ## Tools
 
