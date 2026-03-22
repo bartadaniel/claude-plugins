@@ -27,6 +27,11 @@ Be proactive about identifying undocumented conventions, implicit patterns, and 
 2. **Suggest where it belongs.** Propose adding it to an existing doc or creating a new one.
 3. **Write it.** Don't just note it — offer to add the documentation immediately.
 
+## Frontend
+
+- **Hooks over repeated logic.** If multiple pages share the same `useEffect` logic (auth guards, data fetching, redirects), extract it into a custom hook.
+- **Think in components.** UI work should produce composable, reusable pieces. If you're building something that will clearly appear in more than one place, make it a shared component from the start.
+
 ## Git — Atomic Commits
 
 When asked to commit changes, split into the smallest logical units possible without extra effort. If changes naturally group into "feature A touches 2 files" and "feature B touches 3 files", make two commits. Do not force a split if the changes are genuinely coupled. No need to over-engineer it — just avoid mammoth single commits when an obvious split exists.
