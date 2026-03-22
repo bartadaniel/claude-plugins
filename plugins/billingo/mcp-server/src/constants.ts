@@ -14,7 +14,7 @@ export const documentTypes = ['advance', 'cancellation', 'cert_of_completion', '
 
 export const paymentStatuses = ['expired', 'none', 'outstanding', 'paid', 'partially_paid'] as const;
 
-export const categories = ['advertisement', 'development', 'other', 'overheads', 'service', 'stock', 'tangible_assets'] as const;
+export const categories = ['advertisement', 'development', 'education_and_trainings', 'other', 'overheads', 'service', 'software', 'stock', 'tangible_assets'] as const;
 
 export const partnerTaxTypes = ['', 'FOREIGN', 'HAS_TAX_NUMBER', 'NO_TAX_NUMBER'] as const;
 
