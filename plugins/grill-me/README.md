@@ -17,7 +17,7 @@ Use when you want to stress-test a plan, get critical feedback on a design, or s
 
 ## Credits
 
-Based on the [grill-me](https://github.com/mattpocock/skills/tree/main/grill-me) skill by [Matt Pocock](https://github.com/mattpocock).
+Originally created by [Matt Pocock](https://github.com/mattpocock). Source: [mattpocock/skills/grill-me](https://github.com/mattpocock/skills/tree/main/grill-me).
 
 ## Installation
 
