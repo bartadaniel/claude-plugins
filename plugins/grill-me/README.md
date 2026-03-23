@@ -15,6 +15,10 @@ When invoked, the skill conducts an intensive interview about your plan or desig
 
 Use when you want to stress-test a plan, get critical feedback on a design, or simply say "grill me".
 
+## Credits
+
+Based on the [grill-me](https://github.com/mattpocock/skills/tree/main/grill-me) skill by [Matt Pocock](https://github.com/mattpocock).
+
 ## Installation
 
 ```bash
