@@ -10,6 +10,7 @@ A continuously evolving personal Claude Code infrastructure.
 | [apple-notes](plugins/apple-notes) | Access and manage Apple Notes — list, create, read, update, delete, search, tag, batch operations, export, and organize with AI-suggested folder structure and tagging |
 | [billingo](plugins/billingo) | Manage invoices, partners, products, and expenses via the Billingo Hungarian invoicing API — includes guided invoice creation and spending entry workflows |
 | [dev-conventions](plugins/dev-conventions) | General development conventions automatically injected into every session via a SessionStart hook |
+| [grill-me](plugins/grill-me) | Interview relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree |
 
 ## Installation
 
