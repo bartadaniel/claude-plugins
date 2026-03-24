@@ -1,7 +1,7 @@
 {
   "name": "ghostty-session",
   "description": "Auto-save and auto-resume Claude Code sessions across terminal restarts with Ghostty",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Daniel Barta",
     "email": "barta.daniel@gmail.com"
