@@ -11,7 +11,7 @@
   "license": "MIT",
   "keywords": ["session", "resume", "persistence", "ghostty"],
   "hooks": {
-    "Setup": [
+    "SessionStart": [
       {
         "hooks": [
           {

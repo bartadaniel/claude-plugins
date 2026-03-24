@@ -16,7 +16,7 @@ Designed for a Ghostty + parallel Claude Code workflow on macOS where you run mu
 /plugin install ghostty-session@bartadaniel-plugins
 ```
 
-The `Setup` hook automatically:
+On first session start, the plugin automatically:
 - Copies the shell integration to `~/.claude/ghostty-session/claude-resume.zsh`
 - Adds a `source` line to `~/.zshrc`
 - Adds `window-save-state` and `shell-integration` settings to your Ghostty config
