@@ -37,3 +37,17 @@ Be proactive about identifying undocumented conventions, implicit patterns, and 
 ## Git — Atomic Commits
 
 When asked to commit changes, split into the smallest logical units possible without extra effort. If changes naturally group into "feature A touches 2 files" and "feature B touches 3 files", make two commits. Do not force a split if the changes are genuinely coupled. No need to over-engineer it — just avoid mammoth single commits when an obvious split exists.
+
+## Debugging — Evidence Before Guessing
+
+When the user reports something is **broken**, **not working**, or **looks wrong**, gather evidence from the running application **before** reading code or speculating about the cause.
+
+For web applications with a Chrome DevTools MCP connected:
+
+1. `mcp__chrome-devtools__list_pages` — find the active tab.
+2. `mcp__chrome-devtools__take_screenshot` — see what the user sees.
+3. `mcp__chrome-devtools__list_console_messages` — check for JS errors/warnings.
+4. `mcp__chrome-devtools__list_network_requests` — check for failed requests if relevant.
+5. Only after gathering this evidence, proceed to code investigation.
+
+For other environments, use whatever observability is available (logs, shell output, status endpoints) before diving into source code. The principle is the same: look at reality first, then form a hypothesis.
