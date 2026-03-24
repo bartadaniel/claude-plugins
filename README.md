@@ -11,6 +11,7 @@ A continuously evolving personal Claude Code infrastructure.
 | [billingo](plugins/billingo) | Manage invoices, partners, products, and expenses via the Billingo Hungarian invoicing API — includes guided invoice creation and spending entry workflows |
 | [dev-conventions](plugins/dev-conventions) | General development conventions automatically injected into every session via a SessionStart hook |
 | [grill-me](plugins/grill-me) | Interview relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree |
+| [ghostty-session](plugins/ghostty-session) | Auto-save and auto-resume Claude Code sessions across terminal restarts with Ghostty |
 
 ## Installation
 

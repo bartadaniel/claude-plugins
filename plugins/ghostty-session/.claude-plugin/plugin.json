@@ -1,0 +1,35 @@
+{
+  "name": "ghostty-session",
+  "description": "Auto-save and auto-resume Claude Code sessions across terminal restarts with Ghostty",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Barta",
+    "email": "barta.daniel@gmail.com"
+  },
+  "homepage": "https://github.com/bartadaniel/claude-plugins/tree/main/plugins/ghostty-session",
+  "repository": "https://github.com/bartadaniel/claude-plugins",
+  "license": "MIT",
+  "keywords": ["session", "resume", "persistence", "ghostty"],
+  "hooks": {
+    "Setup": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/install-shell-integration.sh\""
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/session-save.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}
