@@ -44,6 +44,15 @@
       "author": {
         "name": "Daniel Barta"
       }
+    },
+    {
+      "name": "ghostty-session",
+      "source": "./plugins/ghostty-session",
+      "description": "Auto-save and auto-resume Claude Code sessions across terminal restarts with Ghostty",
+      "version": "1.0.0",
+      "author": {
+        "name": "Daniel Barta"
+      }
     }
   ]
 }
