@@ -10,6 +10,12 @@ DATA_DIR="${CLAUDE_PLUGIN_DATA}"
 SRC="${CLAUDE_PLUGIN_ROOT}/scripts/claude-resume.zsh"
 SOURCE_LINE="source \"${DEST_DIR}/claude-resume.zsh\""
 ZSHRC="${HOME}/.zshrc"
+SENTINEL="${DATA_DIR}/.installed"
+
+# Skip if already installed
+if [[ -f "${SENTINEL}" ]]; then
+  exit 0
+fi
 
 # --- 1. Copy shell integration with resolved data path ---
 mkdir -p "${DEST_DIR}"
@@ -70,3 +76,6 @@ if [[ ${#added[@]} -gt 0 ]]; then
     done
   fi
 fi
+
+# Mark as installed so we don't re-run on every SessionStart
+touch "${SENTINEL}"
