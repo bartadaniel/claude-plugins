@@ -1,0 +1,25 @@
+{
+  "name": "bell",
+  "description": "Play a configurable sound when Claude Code finishes responding",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Barta",
+    "email": "barta.daniel@gmail.com"
+  },
+  "homepage": "https://github.com/bartadaniel/claude-plugins/tree/main/plugins/bell",
+  "repository": "https://github.com/bartadaniel/claude-plugins",
+  "license": "MIT",
+  "keywords": ["bell", "sound", "notification", "alert"],
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/play.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -71,6 +71,15 @@
       "author": {
         "name": "Daniel Barta"
       }
+    },
+    {
+      "name": "bell",
+      "source": "./plugins/bell",
+      "description": "Play terminal bell sound when Claude Code finishes responding",
+      "version": "1.0.0",
+      "author": {
+        "name": "Daniel Barta"
+      }
     }
   ]
 }
