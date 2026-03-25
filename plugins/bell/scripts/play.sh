@@ -1,24 +1,39 @@
 #!/usr/bin/env bash
-# Play the configured bell sound.
-# Config file: ~/.claude/bell.conf (single line: sound name or absolute path)
-# Defaults to terminal bell if no config or sound is "bell".
+# Play the configured completion sound.
+# Config: ${CLAUDE_PLUGIN_DATA}/config (single line: sound name or absolute path)
+# Defaults to "Glass" (macOS system sound). Set to "none" to disable.
+set -euo pipefail
 
-CONFIG_FILE="${HOME}/.claude/bell.conf"
+CONFIG_FILE="${CLAUDE_PLUGIN_DATA:-${HOME}/.claude/bell}/config"
 
 if [ -f "$CONFIG_FILE" ]; then
-  SOUND="$(head -1 "$CONFIG_FILE" | tr -d '[:space:]')"
+  SOUND="$(head -1 "$CONFIG_FILE" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
 else
-  SOUND="bell"
+  SOUND=""
 fi
 
+# Default to Glass if unconfigured
+SOUND="${SOUND:-Glass}"
+
+play_sound() {
+  if command -v afplay >/dev/null 2>&1; then
+    afplay -t 5 "$1" 2>/dev/null &
+  else
+    printf '\a'
+  fi
+}
+
 case "$SOUND" in
-  ""|"bell")
+  none|off)
+    # Disabled — do nothing
+    ;;
+  bell)
     printf '\a'
     ;;
   /*)
     # Absolute path to a sound file
     if [ -f "$SOUND" ]; then
-      afplay "$SOUND" &
+      play_sound "$SOUND"
     else
       printf '\a'
     fi
@@ -27,7 +42,7 @@ case "$SOUND" in
     # Treat as macOS system sound name
     SYSTEM_SOUND="/System/Library/Sounds/${SOUND}.aiff"
     if [ -f "$SYSTEM_SOUND" ]; then
-      afplay "$SYSTEM_SOUND" &
+      play_sound "$SYSTEM_SOUND"
     else
       printf '\a'
     fi
