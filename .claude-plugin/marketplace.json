@@ -80,6 +80,15 @@
       "author": {
         "name": "Daniel Barta"
       }
+    },
+    {
+      "name": "session-namer",
+      "source": "./plugins/session-namer",
+      "description": "Auto-name Claude Code sessions after the first exchange for easier resume",
+      "version": "1.0.0",
+      "author": {
+        "name": "Daniel Barta"
+      }
     }
   ]
 }

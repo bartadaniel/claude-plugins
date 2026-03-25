@@ -15,6 +15,7 @@ A continuously evolving personal Claude Code infrastructure.
 | [conventional-commits](plugins/conventional-commits) | Enforce conventional commit messages and set up commitlint + husky git hooks |
 | [image-optimizer](plugins/image-optimizer) | Automatically downsize and compress images from MCP tools to reduce session size — configurable resolution and JPEG quality |
 | [bell](plugins/bell) | Play a configurable sound when Claude Code finishes responding — choose from macOS system sounds or a custom audio file |
+| [session-namer](plugins/session-namer) | Auto-name Claude Code sessions after the first exchange — generates slug-style names from the initial prompt for easier resume |
 
 ## Installation
 

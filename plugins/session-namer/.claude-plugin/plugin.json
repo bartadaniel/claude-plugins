@@ -1,0 +1,26 @@
+{
+  "name": "session-namer",
+  "description": "Auto-name Claude Code sessions after the first exchange for easier resume",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Barta",
+    "email": "barta.daniel@gmail.com"
+  },
+  "homepage": "https://github.com/bartadaniel/claude-plugins/tree/main/plugins/session-namer",
+  "repository": "https://github.com/bartadaniel/claude-plugins",
+  "license": "MIT",
+  "keywords": ["session", "rename", "title", "resume"],
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/rename-session.sh\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
