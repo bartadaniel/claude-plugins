@@ -13,6 +13,7 @@ A continuously evolving personal Claude Code infrastructure.
 | [grill-me](plugins/grill-me) | Interview relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree |
 | [ghostty-session](plugins/ghostty-session) | Auto-save and auto-resume Claude Code sessions across terminal restarts with Ghostty |
 | [conventional-commits](plugins/conventional-commits) | Enforce conventional commit messages and set up commitlint + husky git hooks |
+| [image-optimizer](plugins/image-optimizer) | Automatically downsize and compress images from MCP tools to reduce session size — configurable resolution and JPEG quality |
 
 ## Installation
 
