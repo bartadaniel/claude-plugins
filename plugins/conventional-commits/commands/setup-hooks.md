@@ -93,7 +93,13 @@ while read local_ref local_oid remote_ref remote_oid; do
 done
 ```
 
-### 6. Create commitlint config
+### 6. Make hooks executable
+
+```bash
+chmod +x .husky/commit-msg .husky/pre-push
+```
+
+### 7. Create commitlint config
 
 Write `commitlint.config.mjs` to the project root:
 
@@ -101,7 +107,7 @@ Write `commitlint.config.mjs` to the project root:
 export default { extends: ['@commitlint/config-conventional'] };
 ```
 
-### 7. Verify setup
+### 8. Verify setup
 
 Run a quick validation to confirm everything is wired up:
 
