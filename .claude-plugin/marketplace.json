@@ -53,6 +53,15 @@
       "author": {
         "name": "Daniel Barta"
       }
+    },
+    {
+      "name": "conventional-commits",
+      "source": "./plugins/conventional-commits",
+      "description": "Enforce conventional commit messages and set up commitlint + husky git hooks",
+      "version": "1.0.0",
+      "author": {
+        "name": "Daniel Barta"
+      }
     }
   ]
 }
