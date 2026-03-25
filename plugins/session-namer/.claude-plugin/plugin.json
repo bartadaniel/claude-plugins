@@ -1,7 +1,7 @@
 {
   "name": "session-namer",
   "description": "Auto-name Claude Code sessions after the first exchange for easier resume",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Daniel Barta",
     "email": "barta.daniel@gmail.com"
