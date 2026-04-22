@@ -16,6 +16,7 @@ A continuously evolving personal Claude Code infrastructure.
 | [image-optimizer](plugins/image-optimizer) | Automatically downsize and compress images from MCP tools to reduce session size — configurable resolution and JPEG quality |
 | [bell](plugins/bell) | Play a configurable sound when Claude Code finishes responding — choose from macOS system sounds or a custom audio file |
 | [session-namer](plugins/session-namer) | Auto-name Claude Code sessions — prompts Claude to suggest a `/name` slug after the first exchange for easier identification and resume |
+| [my-settings](plugins/my-settings) | Sync global Claude Code settings (model, env, status line, MCP servers, plugins) to a fresh machine via `/sync-my-settings` |
 
 ## Installation
 
