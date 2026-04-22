@@ -46,15 +46,6 @@
       }
     },
     {
-      "name": "ghostty-session",
-      "source": "./plugins/ghostty-session",
-      "description": "Auto-save and auto-resume Claude Code sessions across terminal restarts with Ghostty",
-      "version": "1.0.0",
-      "author": {
-        "name": "Daniel Barta"
-      }
-    },
-    {
       "name": "conventional-commits",
       "source": "./plugins/conventional-commits",
       "description": "Enforce conventional commit messages and set up commitlint + husky git hooks",
@@ -76,15 +67,6 @@
       "name": "bell",
       "source": "./plugins/bell",
       "description": "Play a configurable sound when Claude Code finishes responding. Run /bell:configure to choose a sound or disable it.",
-      "version": "1.1.0",
-      "author": {
-        "name": "Daniel Barta"
-      }
-    },
-    {
-      "name": "session-namer",
-      "source": "./plugins/session-namer",
-      "description": "Auto-name Claude Code sessions after the first exchange for easier resume",
       "version": "1.1.0",
       "author": {
         "name": "Daniel Barta"
