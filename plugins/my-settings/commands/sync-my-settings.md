@@ -36,7 +36,7 @@ The parent directory of that match (containing `settings.json`, `mcp-servers.jso
 
 For each top-level key in the reference:
 - **Scalars** (`model`, `voiceEnabled`, `skipAutoPermissionPrompt`, `skipDangerousModePermissionPrompt`): if current value differs, mark `update`; if missing, mark `add`.
-- **Objects** (`env`, `attribution`, `permissions`, `git`, `enabledPlugins`): apply the scalar rule per sub-key. Reference wins on conflict. **Preserve existing sub-keys not in the reference.**
+- **Objects** (`env`, `attribution`, `permissions`, `enabledPlugins`): apply the scalar rule per sub-key. Reference wins on conflict. **Preserve existing sub-keys not in the reference.**
 - **`statusLine`**: deep-compare the whole block; if different or missing, mark `update`/`add`.
 
 **Never touch top-level keys the reference doesn't specify** (e.g., `hooks`, `extraKnownMarketplaces`, `mcpServers`).
