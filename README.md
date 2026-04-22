@@ -11,11 +11,9 @@ A continuously evolving personal Claude Code infrastructure.
 | [billingo](plugins/billingo) | Manage invoices, partners, products, and expenses via the Billingo Hungarian invoicing API — includes guided invoice creation and spending entry workflows |
 | [dev-conventions](plugins/dev-conventions) | General development conventions automatically injected into every session via a SessionStart hook |
 | [grill-me](plugins/grill-me) | Interview relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree |
-| [ghostty-session](plugins/ghostty-session) | Auto-save and auto-resume Claude Code sessions across terminal restarts with Ghostty |
 | [conventional-commits](plugins/conventional-commits) | Enforce conventional commit messages and set up commitlint + husky git hooks |
 | [image-optimizer](plugins/image-optimizer) | Automatically downsize and compress images from MCP tools to reduce session size — configurable resolution and JPEG quality |
 | [bell](plugins/bell) | Play a configurable sound when Claude Code finishes responding — choose from macOS system sounds or a custom audio file |
-| [session-namer](plugins/session-namer) | Auto-name Claude Code sessions — prompts Claude to suggest a `/name` slug after the first exchange for easier identification and resume |
 | [my-settings](plugins/my-settings) | Sync global Claude Code settings (model, env, status line, MCP servers, plugins) to a fresh machine via `/sync-my-settings` |
 
 ## Installation
