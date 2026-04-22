@@ -16,9 +16,6 @@
   },
   "skipAutoPermissionPrompt": true,
   "voiceEnabled": true,
-  "git": {
-    "addCoAuthoredBy": false
-  },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
     "clangd-lsp@claude-plugins-official": true,
