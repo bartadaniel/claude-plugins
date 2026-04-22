@@ -1,0 +1,5 @@
+{
+  "name": "my-settings",
+  "version": "1.0.0",
+  "description": "Sync Daniel's global Claude Code settings (model, env, status line, MCP servers, plugins) to a fresh machine via /sync-my-settings"
+}

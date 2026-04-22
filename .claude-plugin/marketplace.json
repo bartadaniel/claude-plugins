@@ -89,6 +89,15 @@
       "author": {
         "name": "Daniel Barta"
       }
+    },
+    {
+      "name": "my-settings",
+      "source": "./plugins/my-settings",
+      "description": "Sync global Claude Code settings (model, env, status line, MCP servers, plugins) from a reference config via /sync-my-settings",
+      "version": "1.0.0",
+      "author": {
+        "name": "Daniel Barta"
+      }
     }
   ]
 }
