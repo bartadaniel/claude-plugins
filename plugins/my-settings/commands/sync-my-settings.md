@@ -15,19 +15,19 @@ Use Glob to find this plugin's install directory:
 ~/.claude/plugins/cache/*/my-settings/*/reference/settings.json
 ```
 
-The parent directory of that match (containing `settings.json`, `mcp-servers.json`, and `scripts/statusline.sh`) is the reference root. Call it `$REF`.
+The parent directory of that match (containing `settings.json`, `mcp-servers.json`, and `statusline-command.sh`) is the reference root. Call it `$REF`.
 
 ## 2. Read all sources in parallel
 
 **Reference** (from `$REF`):
 - `settings.json`
 - `mcp-servers.json`
-- `scripts/statusline.sh`
+- `statusline-command.sh`
 
 **Current state:**
 - `~/.claude/settings.json`
 - `mcpServers` from `~/.claude.json` — use `jq '.mcpServers' ~/.claude.json` (do NOT Read the full file; it's large)
-- `~/.claude/scripts/statusline.sh` (may not exist on a fresh machine)
+- `~/.claude/statusline-command.sh` (may not exist on a fresh machine)
 - `~/.claude/plugins/installed_plugins.json` (to see which plugins are already installed)
 
 ## 3. Compute the diff
@@ -81,7 +81,7 @@ Plugins (will auto-install on Claude Code restart):
   + enable vercel@claude-plugins-official
 
 Files:
-  + write ~/.claude/scripts/statusline.sh
+  + write ~/.claude/statusline-command.sh
 ```
 
 For scalar updates, always show `old → new`. For adds, show the value being added.
@@ -101,7 +101,7 @@ Wait for explicit `y`/`yes`. Any other response = abort without writing.
 Create `~/.claude/backups/sync-<timestamp>/` using `date +%Y%m%d-%H%M%S`. Copy:
 - `~/.claude/settings.json` → `<backup>/settings.json`
 - `~/.claude.json` → `<backup>/claude.json`
-- `~/.claude/scripts/statusline.sh` → `<backup>/statusline.sh` (if exists)
+- `~/.claude/statusline-command.sh` → `<backup>/statusline-command.sh` (if exists)
 
 ### Merge `~/.claude/settings.json`
 
@@ -122,9 +122,8 @@ Verify with `jq '.mcpServers' ~/.claude.json`.
 ### Copy statusline script
 
 ```bash
-mkdir -p ~/.claude/scripts
-cp "$REF/scripts/statusline.sh" ~/.claude/scripts/statusline.sh
-chmod +x ~/.claude/scripts/statusline.sh
+cp "$REF/statusline-command.sh" ~/.claude/statusline-command.sh
+chmod +x ~/.claude/statusline-command.sh
 ```
 
 ### Plugins
