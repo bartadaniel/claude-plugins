@@ -9,5 +9,16 @@
       "--usageStatistics=false"
     ],
     "env": {}
+  },
+  "next-devtools": {
+    "type": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "next-devtools-mcp@latest"
+    ],
+    "env": {
+      "NEXT_TELEMETRY_DISABLED": "1"
+    }
   }
 }
