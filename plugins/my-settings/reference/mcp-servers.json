@@ -4,8 +4,7 @@
     "command": "npx",
     "args": [
       "chrome-devtools-mcp@latest",
-      "--autoConnect",
-      "--channel=beta",
+      "--browserUrl=http://localhost:9222",
       "--experimental-screencast=true",
       "--usageStatistics=false"
     ],
