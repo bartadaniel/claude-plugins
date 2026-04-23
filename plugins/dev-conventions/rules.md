@@ -51,3 +51,27 @@ For web applications with a Chrome DevTools MCP connected:
 5. Only after gathering this evidence, proceed to code investigation.
 
 For other environments, use whatever observability is available (logs, shell output, status endpoints) before diving into source code. The principle is the same: look at reality first, then form a hypothesis.
+
+## Chrome DevTools MCP — Use a Separate Window
+
+The Chrome DevTools MCP connects to a shared Chrome instance (`--browserUrl=http://localhost:9222`), so multiple Claude sessions may be attached at the same time. Screenshots, clicks, and most interactive tools call `Page.bringToFront()` under the hood — if you drive the user's active tab, you'll yank focus away from whatever they're doing. To avoid that, always work inside your own popup window:
+
+1. **On your first Chrome interaction in a session**, open a popup window via `evaluate_script`. A popup lands in its own OS window; subsequent focus changes stay inside that window and don't disturb the user's primary window:
+
+   ```
+   evaluate_script {
+     function: "() => { const w = window.open('about:blank', '_blank', 'popup=yes,width=1400,height=900'); return w ? 'ok' : 'blocked'; }"
+   }
+   ```
+
+   If the result is `blocked`, fall back to `new_page { url: '...', background: true }` and warn the user that focus-stealing mitigation is degraded for this session.
+
+2. **Select the new page without bringing it to front**: call `list_pages`, find the newly-opened entry (typically the last one, URL `about:blank`), then `select_page { pageId, bringToFront: false }`.
+
+3. **Navigate inside that tab** with `navigate_page`. Do not open additional tabs unless the task genuinely requires it — extra tabs tend to land back in the user's main window.
+
+4. **Always `select_page` before acting** if there's any chance another Claude instance has shifted the selection. Never assume the currently-selected page is yours.
+
+5. **Never pass `bringToFront: true`** unless the user explicitly asks — it defeats the whole point of the popup window.
+
+6. **Never close tabs or windows you did not open.** The user closes stale agent windows manually when they're done.
