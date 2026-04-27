@@ -21,6 +21,16 @@ Every task is an opportunity to strengthen the codebase as a whole. Do not just 
 - **Respect and evolve architecture.** Understand the existing file structure, data flow, and component hierarchy before making changes. New code should follow established conventions. If a convention is wrong, fix the convention — don't create a parallel one.
 - **Leave the codebase better.** When you touch an area and notice a small, obvious improvement (a duplicated constant, an inconsistent naming), fix it — as long as it's low-risk and within the scope of the current work. Don't go on a refactoring spree, but don't ignore easy wins either.
 
+## Architecture — Hexagonal for Substantial Feature Work
+
+When developing a meaningful feature — anything with multiple execution targets, external dependencies, or that benefits from independent eval — prefer hexagonal (ports and adapters) architecture.
+
+The pattern: pure core logic with explicit `(input, deps) → output` signatures, side effects behind a TypeScript interface (port), at least one real adapter and one fixture/recorded adapter. This unlocks replayable evals, isolated unit tests, and clean swaps between client/backend or real/fake providers.
+
+- **Apply when:** code runs in multiple contexts (browser + Node CLI + CI), depends on external services (LLMs, APIs, databases), or has multiple competing implementations (e.g. Replicate vs Bedrock, WebGPU local vs FFmpeg backend fallback).
+- **Skip when:** simple CRUD, glue code, one-off scripts, routine UI changes. Hexagonal is not a default — it's a tool for managing real complexity. Premature ports are pure overhead.
+- **Minimum viable structure:** `core/` (pure functions + schemas), `ports/` (interfaces), `adapters/` (implementations, including at least one fixture/recorded adapter so eval can run without network).
+
 ## Documentation — Capture Tribal Knowledge
 
 Be proactive about identifying undocumented conventions, implicit patterns, and decisions that exist only as tribal knowledge. When you discover something that someone new to the project would need to know but isn't written down:
