@@ -1,5 +1,5 @@
 ---
-description: "Sync global Claude Code settings (model, env, status line, MCP servers, plugins) from this plugin's reference config"
+description: "Sync global Claude Code settings (model, status line, MCP servers, plugins) from this plugin's reference config"
 argument-hint: ""
 ---
 
@@ -38,7 +38,7 @@ The parent directory of that match (containing `settings.json`, `mcp-servers.jso
 
 For each top-level key in the reference:
 - **Scalars** (`model`, `voiceEnabled`, `skipAutoPermissionPrompt`, `skipDangerousModePermissionPrompt`): if current value differs, mark `update`; if missing, mark `add`.
-- **Objects** (`env`, `attribution`, `permissions`, `enabledPlugins`): apply the scalar rule per sub-key. Reference wins on conflict. **Preserve existing sub-keys not in the reference.**
+- **Objects** (`attribution`, `permissions`, `enabledPlugins`): apply the scalar rule per sub-key. Reference wins on conflict. **Preserve existing sub-keys not in the reference.**
 - **`statusLine`**: deep-compare the whole block; if different or missing, mark `update`/`add`.
 
 **Never touch top-level keys the reference doesn't specify** (e.g., `hooks`, `extraKnownMarketplaces`, `mcpServers`).
@@ -92,6 +92,7 @@ Settings (~/.claude/settings.json):
 
 MCP servers (~/.claude.json):
   + install chrome-devtools
+  + install next-devtools
 
 Plugins (will auto-install on Claude Code restart):
   + enable typescript-lsp@claude-plugins-official
