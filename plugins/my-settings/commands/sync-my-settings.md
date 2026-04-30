@@ -86,7 +86,6 @@ Print a grouped summary, skipping empty sections. Example:
 Proposed changes:
 
 Settings (~/.claude/settings.json):
-  + env.CLAUDE_CODE_EFFORT_LEVEL = "xhigh"
   ~ model: "sonnet" → "opus[1m]"
   + voiceEnabled = true
   ...
