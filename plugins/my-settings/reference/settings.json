@@ -15,6 +15,7 @@
     "command": "~/.claude/statusline-command.sh"
   },
   "skipAutoPermissionPrompt": true,
+  "skipDangerousModePermissionPrompt": true,
   "voiceEnabled": true,
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,

@@ -15,7 +15,7 @@ Use Glob to find this plugin's install directory:
 ~/.claude/plugins/cache/*/my-settings/*/reference/settings.json
 ```
 
-The parent directory of that match (containing `settings.json`, `mcp-servers.json`, and `statusline-command.sh`) is the reference root. Call it `$REF`.
+The parent directory of that match (containing `settings.json`, `mcp-servers.json`, `statusline-command.sh`, and `zshrc-snippet.sh`) is the reference root. Call it `$REF`.
 
 ## 2. Read all sources in parallel
 
@@ -23,12 +23,14 @@ The parent directory of that match (containing `settings.json`, `mcp-servers.jso
 - `settings.json`
 - `mcp-servers.json`
 - `statusline-command.sh`
+- `zshrc-snippet.sh`
 
 **Current state:**
 - `~/.claude/settings.json`
 - `mcpServers` from `~/.claude.json` — use `jq '.mcpServers' ~/.claude.json` (do NOT Read the full file; it's large)
 - `~/.claude/statusline-command.sh` (may not exist on a fresh machine)
 - `~/.claude/plugins/installed_plugins.json` (to see which plugins are already installed)
+- `~/.zshrc` (may not exist on a fresh machine)
 
 ## 3. Compute the diff
 
@@ -59,6 +61,23 @@ For each plugin:
 
 Compare content byte-for-byte. If different or target missing: `replace`.
 
+### Zshrc snippet
+
+The reference file `$REF/zshrc-snippet.sh` is a managed block delimited by sentinel markers:
+
+```
+# >>> claude-my-settings >>>
+...
+# <<< claude-my-settings <<<
+```
+
+Locate the block in `~/.zshrc`:
+- File or block missing entirely → `add` (append the snippet on its own, separated by a blank line if the file doesn't already end with one).
+- Block present but its content (markers + body) differs from the reference → `update` (replace the block in place, preserving everything outside the markers).
+- Identical → `unchanged`.
+
+**Never touch lines outside the sentinel markers.** If `~/.zshrc` contains an existing `alias claude=...` outside the managed block, flag it in the plan but do not modify it — the user can resolve the conflict.
+
 ## 4. Present the plan
 
 Print a grouped summary, skipping empty sections. Example:
@@ -82,6 +101,9 @@ Plugins (will auto-install on Claude Code restart):
 
 Files:
   + write ~/.claude/statusline-command.sh
+
+Shell (~/.zshrc):
+  + add managed block (alias claude='claude --allow-dangerously-skip-permissions')
 ```
 
 For scalar updates, always show `old → new`. For adds, show the value being added.
@@ -102,6 +124,7 @@ Create `~/.claude/backups/sync-<timestamp>/` using `date +%Y%m%d-%H%M%S`. Copy:
 - `~/.claude/settings.json` → `<backup>/settings.json`
 - `~/.claude.json` → `<backup>/claude.json`
 - `~/.claude/statusline-command.sh` → `<backup>/statusline-command.sh` (if exists)
+- `~/.zshrc` → `<backup>/zshrc` (if exists)
 
 ### Merge `~/.claude/settings.json`
 
@@ -125,6 +148,18 @@ Verify with `jq '.mcpServers' ~/.claude.json`.
 cp "$REF/statusline-command.sh" ~/.claude/statusline-command.sh
 chmod +x ~/.claude/statusline-command.sh
 ```
+
+### Update `~/.zshrc` managed block
+
+Algorithm:
+
+1. `touch ~/.zshrc` if missing.
+2. Check whether `~/.zshrc` already contains the start marker `# >>> claude-my-settings >>>`.
+3. **If the block exists**: produce a new file by copying every line from `~/.zshrc`, except replace the run from the start marker through the end marker (inclusive) with the contents of `$REF/zshrc-snippet.sh`. `awk` is a clean way to do this — gate output on a flag flipped by the markers, and emit the snippet when the start marker is seen.
+4. **If the block does not exist**: copy `~/.zshrc` verbatim, ensure it ends with a newline, append a blank separator line if the previous content was non-empty, then append `$REF/zshrc-snippet.sh`.
+5. Write to `~/.zshrc.tmp` first, then `mv` atomically over `~/.zshrc`.
+
+Do **not** `chmod` or `source` the file — the user's next shell will pick it up.
 
 ### Plugins
 
