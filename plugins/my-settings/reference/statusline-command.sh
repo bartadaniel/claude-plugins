@@ -6,7 +6,8 @@ input=$(cat)
 
 # --- Model & effort ---
 model=$(echo "$input" | jq -r '.model.display_name // "Unknown model"')
-effort=$(echo "$input" | jq -r '.output_style.name // empty')
+effort=$(echo "$input" | jq -r '.effort.level // empty')
+output_style=$(echo "$input" | jq -r '.output_style.name // empty')
 
 # --- Context window ---
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
@@ -58,14 +59,28 @@ else
   parts+=("$(printf "${CYAN}%s${RESET}" "$short_cwd")")
 fi
 
-# 2. Model + effort
-if [ -n "$effort" ] && [ "$effort" != "default" ] && [ "$effort" != "Default" ]; then
-  parts+=("$(printf "${GREEN}%s${RESET} ${DIM}[%s]${RESET}" "$model" "$effort")")
-else
-  parts+=("$(printf "${GREEN}%s${RESET}" "$model")")
+# 2. Model
+parts+=("$(printf "${GREEN}%s${RESET}" "$model")")
+
+# 3a. Effort level (reasoning effort; only shown when present)
+if [ -n "$effort" ]; then
+  case "$effort" in
+    low)    effort_color="$DIM" ;;
+    medium) effort_color="$YELLOW" ;;
+    high)   effort_color="$CYAN" ;;
+    xhigh)  effort_color="$MAGENTA" ;;
+    max)    effort_color="$RED" ;;
+    *)      effort_color="$RESET" ;;
+  esac
+  parts+=("$(printf "effort: ${effort_color}%s${RESET}" "$effort")")
 fi
 
-# 3. Context window usage
+# 3b. Output style (only when non-default)
+if [ -n "$output_style" ] && [ "$output_style" != "default" ] && [ "$output_style" != "Default" ]; then
+  parts+=("$(printf "${DIM}style: %s${RESET}" "$output_style")")
+fi
+
+# 4. Context window usage
 if [ -n "$used_pct" ]; then
   # Color-code by usage level
   used_int=$(printf "%.0f" "$used_pct")
@@ -79,7 +94,7 @@ if [ -n "$used_pct" ]; then
   parts+=("$(printf "ctx: ${ctx_color}%s%%${RESET}" "$(printf "%.0f" "$used_pct")")")
 fi
 
-# 4. Rate limits (only when present)
+# 5. Rate limits (only when present)
 rate_parts=()
 if [ -n "$five_h" ]; then
   five_h_label=$(printf "5h:${YELLOW}%.0f%%${RESET}" "$five_h")
@@ -95,7 +110,7 @@ if [ ${#rate_parts[@]} -gt 0 ]; then
   parts+=("$(printf "limits: %s" "$(IFS=' '; echo "${rate_parts[*]}")")")
 fi
 
-# 5. Vim mode (only when active)
+# 6. Vim mode (only when active)
 if [ -n "$vim_mode" ]; then
   if [ "$vim_mode" = "INSERT" ]; then
     parts+=("$(printf "${GREEN}-- INSERT --${RESET}")")
