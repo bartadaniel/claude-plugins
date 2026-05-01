@@ -30,6 +30,7 @@ fi
 
 # --- Rate limits (Claude.ai subscribers only) ---
 five_h=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+five_h_resets_at=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
 seven_d=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
 
 # --- Vim mode ---
@@ -80,7 +81,15 @@ fi
 
 # 4. Rate limits (only when present)
 rate_parts=()
-[ -n "$five_h" ] && rate_parts+=("$(printf "5h:${YELLOW}%.0f%%${RESET}" "$five_h")")
+if [ -n "$five_h" ]; then
+  five_h_label=$(printf "5h:${YELLOW}%.0f%%${RESET}" "$five_h")
+  if [ -n "$five_h_resets_at" ]; then
+    # macOS BSD date: -r <epoch>; format as HH:MM
+    reset_time=$(date -r "$five_h_resets_at" "+%H:%M" 2>/dev/null)
+    [ -n "$reset_time" ] && five_h_label="${five_h_label} ${DIM}(↻${reset_time})${RESET}"
+  fi
+  rate_parts+=("$five_h_label")
+fi
 [ -n "$seven_d" ] && rate_parts+=("$(printf "7d:${YELLOW}%.0f%%${RESET}" "$seven_d")")
 if [ ${#rate_parts[@]} -gt 0 ]; then
   parts+=("$(printf "limits: %s" "$(IFS=' '; echo "${rate_parts[*]}")")")
