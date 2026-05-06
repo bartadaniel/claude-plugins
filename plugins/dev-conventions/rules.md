@@ -64,7 +64,7 @@ For other environments, use whatever observability is available (logs, shell out
 
 ## Chrome DevTools MCP — Use a Separate Window
 
-The Chrome DevTools MCP connects to a shared Chrome instance (`--browserUrl=http://localhost:9222`), so multiple Claude sessions may be attached at the same time. Screenshots, clicks, and most interactive tools call `Page.bringToFront()` under the hood — if you drive the user's active tab, you'll yank focus away from whatever they're doing. To avoid that, always work inside your own popup window:
+The Chrome DevTools MCP attaches to a shared Chrome instance, so multiple Claude sessions may be attached at the same time. Screenshots, clicks, and most interactive tools call `Page.bringToFront()` under the hood — if you drive the user's active tab, you'll yank focus away from whatever they're doing. To avoid that, always work inside your own popup window:
 
 1. **On your first Chrome interaction in a session**, open a popup window via `evaluate_script`. A popup lands in its own OS window; subsequent focus changes stay inside that window and don't disturb the user's primary window:
 
