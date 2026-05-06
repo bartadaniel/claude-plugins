@@ -1,0 +1,19 @@
+plugins/my-settings/reference/mcp-servers.json
+  s_71a39dd5e57bbf::t_3a40ebf2e71dd6 7-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "9305f0834ffebed0b4cc713794a54336acc5d61f",
+  "prompts": {},
+  "sessions": {
+    "s_71a39dd5e57bbf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1f0b6174-151c-4017-9e73-3e4312fd2ce8",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Daniel Barta <barta.daniel@gmail.com>"
+    }
+  }
+}
