@@ -1,0 +1,24 @@
+plugins/dev-conventions/.claude-plugin/plugin.json
+  s_71a39dd5e57bbf::t_9d954d17e857c9 4
+plugins/my-settings/.claude-plugin/plugin.json
+  s_71a39dd5e57bbf::t_f7a658755aff49 3
+.claude-plugin/marketplace.json
+  s_71a39dd5e57bbf::t_ac2581d50ec162 79
+  s_71a39dd5e57bbf::t_f08ebbff1a055f 43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "09c7eeec7599b370463891f1195afbec6aff0bc4",
+  "prompts": {},
+  "sessions": {
+    "s_71a39dd5e57bbf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1f0b6174-151c-4017-9e73-3e4312fd2ce8",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Daniel Barta <barta.daniel@gmail.com>"
+    }
+  }
+}
